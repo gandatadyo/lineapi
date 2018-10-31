@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -21,7 +22,7 @@ func main() {
 	// }
 
 	client := &http.Client{}
-	bot, err := linebot.New("<977b5cf3276bce134af72ad4e6e45707>", "<nFAf7VS/RulMCFabBKJfgIHvDxfKDpENufTZ4lWQ1M0AGUTKMJG+bVMw+uA/Twon2qYS/EDq/B3AHy/JnVZSnq25RG7SPpEF8QL87YFqDzzne6ZHYA/bhmu6jE3k6/1DG/+a4sp5Bo3+7ZOAwoSLbQdB04t89/1O/w1cDnyilFU=>", linebot.WithHTTPClient(client))
+	bot, err := linebot.New("<16de7664bba6666afdbec1f444b63fd6>", "<wFg+qNbyo6tP4vlx6av2hmNB3Z5xbLNLH0SFloVxH7xuIxOb9qKaH1X1P75XhAvx2qYS/EDq/B3AHy/JnVZSnq25RG7SPpEF8QL87YFqDzxbgu3+EQ2jGTgqC1Ar2trr/C6OfBW27swPBVLxmUU5jVGUYhWQfeY8sLGRXgo3xvw=>", linebot.WithHTTPClient(client))
 
 	if err != nil {
 		log.Fatal(err)
@@ -80,4 +81,5 @@ func main() {
 	// 	c.HTML(http.StatusOK, "home.html", gin.H{"valheader": valheader, "valbody": " THIS IS METHOD GET"})
 	// })
 	// cin.Run(":" + port)
+	fmt.Println("running apps bos")
 }
