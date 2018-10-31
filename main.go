@@ -29,7 +29,7 @@ func main() {
 	// init gin
 	cin = gin.Default()
 	cin.Delims("{$", "}")
-	cin.LoadHTMLGlob("src/templates/*")
+	// cin.LoadHTMLGlob("src/templates/*")
 
 	// event all
 	cin.POST("/callback", func(c *gin.Context) {
