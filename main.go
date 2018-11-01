@@ -1,6 +1,6 @@
 package main
 
-// update 1 Nov 2018
+// update 1 Nov 2018 1.1
 import (
 	"fmt"
 	"log"
@@ -150,7 +150,7 @@ func main() {
 	cin.GET("/flex ", func(c *gin.Context) {
 		fmt.Println("Work start FLEX")
 
-		container := &linebot.BubbleContainer{
+		containerBubble := &linebot.BubbleContainer{
 			Type: linebot.FlexContainerTypeBubble,
 			Body: &linebot.BoxComponent{
 				Type:   linebot.FlexComponentTypeBox,
@@ -168,7 +168,7 @@ func main() {
 			},
 		}
 
-		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("alt text", container)).Do(); err != nil {
+		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("alt text", containerBubble)).Do(); err != nil {
 			log.Print(err)
 		}
 	})
