@@ -43,19 +43,6 @@ func main() {
 		fmt.Println("Work start POST")
 		events, err := bot.ParseRequest(c.Request)
 
-		// defer req.Body.Close()
-		// body, err := ioutil.ReadAll(req.Body)
-		// if err != nil {
-		// 	// ...
-		// }
-		// decoded, err := base64.StdEncoding.DecodeString(req.Header.Get("X-Line-Signature"))
-		// if err != nil {
-		// 	// ...
-		// }
-		// hash := hmac.New(sha256.New, []byte("<channel secret>"))
-		// hash.Write(body)
-		// Compare decoded signature and `hash.Sum(nil)` by using `hmac.Equal
-
 		fmt.Println("Work 1.1")
 		if err != nil {
 			fmt.Println("Error 1.1")
@@ -71,6 +58,9 @@ func main() {
 
 			if event.Type == linebot.EventTypeMessage {
 				fmt.Println("Work EventTypeMessage")
+				if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage("hello, iam good")).Do(); err != nil {
+					log.Print(err)
+				}
 
 			}
 			if event.Type == linebot.EventTypeFollow {
