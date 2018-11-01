@@ -17,6 +17,7 @@ func main() {
 	bot, err := linebot.New("<24ee6cbebfd41457136563b41f8184d6>", "<LZANYzm90f3h6eUyUl4PNce0sTjKQeojp7/E+F3NAyBW/ltsD3UCqsZdTxcyiEk+76+IXhfmzPKjoP16JDCMnzVI/EI5nQarf3h5ngNBDctTepFQAhtP/25yj5EV72OkNtIFPYxzgQPLwssXgQ8gpgdB04t89/1O/w1cDnyilFU=>", linebot.WithHTTPClient(client))
 	if err != nil {
 		fmt.Println("Not Work 1")
+		log.Print(err)
 	}
 
 	// init port
@@ -24,6 +25,7 @@ func main() {
 	if port == "" {
 		port = "1000"
 		fmt.Println("$PORT must be set")
+		log.Print(err)
 	}
 
 	// init gin
@@ -38,6 +40,7 @@ func main() {
 		fmt.Println("Work 1.1")
 		if err != nil {
 			fmt.Println("Error 1.1")
+			log.Print(err)
 		}
 		for _, event := range events {
 			fmt.Println("Work 1.2")
@@ -85,6 +88,7 @@ func main() {
 		fmt.Println("Work 1.1")
 		if err != nil {
 			fmt.Println("Error 1.1")
+			log.Print(err)
 		}
 		for _, event := range events {
 			fmt.Println("Work 1.2")
@@ -144,6 +148,10 @@ func main() {
 		}
 
 	})
+
+	cin.GET("/", func(c *gin.Context) {
+		c.string(http.StatusOK,"Start")
+	}
 
 	cin.Run(":" + port)
 }
