@@ -1,11 +1,7 @@
 package main
 
 import (
-	"crypto/hmac"
-	"crypto/sha256"
-	"encoding/base64"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -47,17 +43,17 @@ func main() {
 		fmt.Println("Work start POST")
 		events, err := bot.ParseRequest(c.Request)
 
-		defer req.Body.Close()
-		body, err := ioutil.ReadAll(req.Body)
-		if err != nil {
-			// ...
-		}
-		decoded, err := base64.StdEncoding.DecodeString(req.Header.Get("X-Line-Signature"))
-		if err != nil {
-			// ...
-		}
-		hash := hmac.New(sha256.New, []byte("<channel secret>"))
-		hash.Write(body)
+		// defer req.Body.Close()
+		// body, err := ioutil.ReadAll(req.Body)
+		// if err != nil {
+		// 	// ...
+		// }
+		// decoded, err := base64.StdEncoding.DecodeString(req.Header.Get("X-Line-Signature"))
+		// if err != nil {
+		// 	// ...
+		// }
+		// hash := hmac.New(sha256.New, []byte("<channel secret>"))
+		// hash.Write(body)
 		// Compare decoded signature and `hash.Sum(nil)` by using `hmac.Equal
 
 		fmt.Println("Work 1.1")
