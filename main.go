@@ -146,5 +146,31 @@ func main() {
 		}
 	})
 
+	cin.GET("/flex ", func(c *gin.Context) {
+		fmt.Println("Work start FLEX")
+
+		container := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Hello,",
+					},
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "World!",
+					},
+				},
+			},
+		}
+
+		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("alt text", container)).Do(); err != nil {
+			log.Print(err)
+		}
+	})
+
 	cin.Run(":" + port)
 }
