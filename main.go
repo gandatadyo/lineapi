@@ -1,7 +1,11 @@
 package main
 
 import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -42,6 +46,20 @@ func main() {
 	cin.POST("/callback", func(c *gin.Context) {
 		fmt.Println("Work start POST")
 		events, err := bot.ParseRequest(c.Request)
+
+		defer req.Body.Close()
+		body, err := ioutil.ReadAll(req.Body)
+		if err != nil {
+			// ...
+		}
+		decoded, err := base64.StdEncoding.DecodeString(req.Header.Get("X-Line-Signature"))
+		if err != nil {
+			// ...
+		}
+		hash := hmac.New(sha256.New, []byte("<channel secret>"))
+		hash.Write(body)
+		// Compare decoded signature and `hash.Sum(nil)` by using `hmac.Equal
+
 		fmt.Println("Work 1.1")
 		if err != nil {
 			fmt.Println("Error 1.1")
@@ -137,21 +155,9 @@ func main() {
 	cin.GET("/pushmessage", func(c *gin.Context) {
 		fmt.Println("Work start PUSH MESSAGE")
 
-		events, err := bot.ParseRequest(c.Request)
-		fmt.Println("Work 1.1")
-		if err != nil {
-			fmt.Println("Error 1.1")
+		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTextMessage("hello, iam from golang")).Do(); err != nil {
+			log.Print(err)
 		}
-		for _, event := range events {
-			fmt.Println(event.Source.UserID)
-			fmt.Println(event.Source.GroupID)
-			fmt.Println(event.Source.RoomID)
-			fmt.Println(event.ReplyToken)
-			if _, err := bot.PushMessage(event.Source.GroupID, linebot.NewTextMessage("hello")).Do(); err != nil {
-				fmt.Println("Error 1.2")
-			}
-		}
-
 	})
 
 	cin.Run(":" + port)
