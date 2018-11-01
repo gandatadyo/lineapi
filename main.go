@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -32,6 +33,10 @@ func main() {
 	cin = gin.Default()
 	cin.Delims("{$", "}")
 	// cin.LoadHTMLGlob("src/templates/*")
+
+	cin.GET("/", func(c *gin.Context) {
+		c.String(http.StatusOK, "Start")
+	})
 
 	// event all
 	cin.POST("/callback", func(c *gin.Context) {
@@ -148,10 +153,6 @@ func main() {
 		}
 
 	})
-
-	cin.GET("/", func(c *gin.Context) {
-		c.string(http.StatusOK,"Start")
-	}
 
 	cin.Run(":" + port)
 }
