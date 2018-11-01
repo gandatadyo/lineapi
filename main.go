@@ -150,7 +150,7 @@ func main() {
 	cin.GET("/multi", func(c *gin.Context) {
 		fmt.Println("Work start PUSH MESSAGE")
 
-		if _, err := bot.PushMessage("[U77e1544ac9ae112f2bde7542bd61df65,U77e1544ac9ae112f2bde7542bd61df65]", linebot.NewTextMessage("hello, iam from golang")).Do(); err != nil {
+		if _, err := bot.PushMessage("['U77e1544ac9ae112f2bde7542bd61df65','U77e1544ac9ae112f2bde7542bd61df65']", linebot.NewTextMessage("hello, iam from golang")).Do(); err != nil {
 			log.Print(err)
 		}
 	})
