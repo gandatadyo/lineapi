@@ -147,7 +147,15 @@ func main() {
 		}
 	})
 
-	cin.GET("/flex ", func(c *gin.Context) {
+	cin.GET("/pushmessage2", func(c *gin.Context) {
+		fmt.Println("Work start PUSH MESSAGE")
+
+		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTextMessage("hello, iam from golang pushmessage2")).Do(); err != nil {
+			log.Print(err)
+		}
+	})
+
+	cin.GET("/pushmessage3 ", func(c *gin.Context) {
 		fmt.Println("Work start FLEX")
 
 		containerBubble := &linebot.BubbleContainer{
