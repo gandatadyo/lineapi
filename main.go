@@ -15,7 +15,7 @@ var cin *gin.Engine
 func main() {
 	// init bot
 	client := &http.Client{}
-	bot, err := linebot.New("<24ee6cbebfd41457136563b41f8184d6>", "<LZANYzm90f3h6eUyUl4PNce0sTjKQeojp7/E+F3NAyBW/ltsD3UCqsZdTxcyiEk+76+IXhfmzPKjoP16JDCMnzVI/EI5nQarf3h5ngNBDctTepFQAhtP/25yj5EV72OkNtIFPYxzgQPLwssXgQ8gpgdB04t89/1O/w1cDnyilFU=>", linebot.WithHTTPClient(client))
+	bot, err := linebot.New("24ee6cbebfd41457136563b41f8184d6", "LZANYzm90f3h6eUyUl4PNce0sTjKQeojp7/E+F3NAyBW/ltsD3UCqsZdTxcyiEk+76+IXhfmzPKjoP16JDCMnzVI/EI5nQarf3h5ngNBDctTepFQAhtP/25yj5EV72OkNtIFPYxzgQPLwssXgQ8gpgdB04t89/1O/w1cDnyilFU=", linebot.WithHTTPClient(client))
 	if err != nil {
 		fmt.Println("Not Work 1")
 		log.Print(err)
