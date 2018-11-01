@@ -140,7 +140,7 @@ func main() {
 	})
 
 	cin.GET("/pushmessage", func(c *gin.Context) {
-		fmt.Println("Work start PUSH MESSAGE")
+		fmt.Println("Work start pushmessage")
 
 		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTextMessage("hello, iam from golang")).Do(); err != nil {
 			log.Print(err)
@@ -148,10 +148,13 @@ func main() {
 	})
 
 	cin.GET("/multi", func(c *gin.Context) {
-		fmt.Println("Work start PUSH MESSAGE")
-		var to = `["U77e1544ac9ae112f2bde7542bd61df65","U77e1544ac9ae112f2bde7542bd61df65"]`
+		fmt.Println("Work start multi message")
+		// var to = `["U77e1544ac9ae112f2bde7542bd61df65","U77e1544ac9ae112f2bde7542bd61df65"]`
+		var to []string
+		to = append(to, "U77e1544ac9ae112f2bde7542bd61df65")
+		to = append(to, "U77e1544ac9ae112f2bde7542bd61df65")
 
-		if _, err := bot.PushMessage(to, linebot.NewTextMessage("hello, iam from golang")).Do(); err != nil {
+		if _, err := bot.Multicast(to, linebot.NewTextMessage("hello, iam from multi message")).Do(); err != nil {
 			log.Print(err)
 		}
 	})
