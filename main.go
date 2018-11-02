@@ -15,8 +15,11 @@ var cin *gin.Engine
 
 func main() {
 	// init bot
+	var channeltoken = `LZANYzm90f3h6eUyUl4PNce0sTjKQeojp7/E+F3NAyBW/ltsD3UCqsZdTxcyiEk+76+IXhfmzPKjoP16JDCMnzVI/EI5nQarf3h5ngNBDctTepFQAhtP/25yj5EV72OkNtIFPYxzgQPLwssXgQ8gpgdB04t89/1O/w1cDnyilFU=`
+	// var replyToken = `24ee6cbebfd41457136563b41f8184d6`
+
 	client := &http.Client{}
-	bot, err := linebot.New("24ee6cbebfd41457136563b41f8184d6", "LZANYzm90f3h6eUyUl4PNce0sTjKQeojp7/E+F3NAyBW/ltsD3UCqsZdTxcyiEk+76+IXhfmzPKjoP16JDCMnzVI/EI5nQarf3h5ngNBDctTepFQAhtP/25yj5EV72OkNtIFPYxzgQPLwssXgQ8gpgdB04t89/1O/w1cDnyilFU=", linebot.WithHTTPClient(client))
+	bot, err := linebot.New("24ee6cbebfd41457136563b41f8184d6", channeltoken, linebot.WithHTTPClient(client))
 	if err != nil {
 		fmt.Println("Not Work 1")
 		log.Print(err)
@@ -157,6 +160,106 @@ func main() {
 		if _, err := bot.Multicast(to, linebot.NewTextMessage("hello, iam from multi message")).Do(); err != nil {
 			log.Print(err)
 		}
+	})
+
+	cin.GET("/flex1", func(c *gin.Context) {
+		fmt.Println("Work start flex1")
+
+		contentsCarousel := &linebot.CarouselContainer{
+			Type: linebot.FlexContainerTypeCarousel,
+			Contents: []*linebot.BubbleContainer{
+				&linebot.BubbleContainer{
+					Type: linebot.FlexContainerTypeBubble,
+					Body: &linebot.BoxComponent{
+						Type:   linebot.FlexComponentTypeBox,
+						Layout: linebot.FlexBoxLayoutTypeVertical,
+						Contents: []linebot.FlexComponent{
+							&linebot.TextComponent{
+								Type: linebot.FlexComponentTypeText,
+								Text: "First bubble",
+							},
+						},
+					},
+				},
+				&linebot.BubbleContainer{
+					Type: linebot.FlexContainerTypeBubble,
+					Body: &linebot.BoxComponent{
+						Type:   linebot.FlexComponentTypeBox,
+						Layout: linebot.FlexBoxLayoutTypeVertical,
+						Contents: []linebot.FlexComponent{
+							&linebot.TextComponent{
+								Type: linebot.FlexComponentTypeText,
+								Text: "Second bubble",
+							},
+						},
+					},
+				},
+			},
+		}
+
+		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("Flex message Carousel", contentsCarousel)).Do(); err != nil {
+			log.Print(err)
+		}
+
+	})
+
+	cin.GET("/flex2", func(c *gin.Context) {
+		fmt.Println("Work start flex2")
+
+		contentsBubble := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Hello,",
+					},
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "World!",
+					},
+				},
+			},
+		}
+
+		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("Flex message Bubble", contentsBubble)).Do(); err != nil {
+			log.Print(err)
+		}
+	})
+
+	cin.GET("/profileapi", func(c *gin.Context) {
+		fmt.Println("Work start profileapi")
+
+	})
+
+	cin.GET("/contentapi", func(c *gin.Context) {
+		fmt.Println("Work start contentapi")
+
+	})
+
+	cin.GET("/grouproom", func(c *gin.Context) {
+		fmt.Println("Work start getmemberroom")
+
+	})
+
+	cin.GET("/button", func(c *gin.Context) {
+		// fmt.Println("Work start button")
+
+		// templateLabel := "Go"
+		// templateText := "Hello, Golang!"
+		// thumbnailImageURL := "https://dl.dropboxusercontent.com/u/358152/linebot/resource/gopher.png"
+		// actionLabel := "Go to golang.org"
+		// actionURI := "https://golang.org"
+		// template := linebot.NewButtonsTemplate(
+		// 	thumbnailImageURL, templateLabel, templateText,
+		// )
+		// altText := "Go template"
+
+		// if _, err := bot.ReplyMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTemplateMessage(altText, contentsBubble)).Do(); err != nil {
+		// 	log.Print(err)
+		// }
 	})
 
 	cin.Run(":" + port)
