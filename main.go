@@ -1,6 +1,6 @@
 package main
 
-// update 03 Nov 2018 1.1
+// update 03 Nov 2018 1.2
 import (
 	"fmt"
 	"log"
