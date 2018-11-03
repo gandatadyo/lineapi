@@ -1,10 +1,6 @@
 package main
 
-<<<<<<< HEAD
 // update 03 Nov 2018 1.1
-=======
-// update 03 Nov 2018 1.2
->>>>>>> 6815b0be8e1dd6084c878d268260030ae4625dbd
 import (
 	"fmt"
 	"log"
