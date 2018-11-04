@@ -61,8 +61,7 @@ func main() {
 
 			if event.Type == linebot.EventTypeMessage {
 				fmt.Println("Work EventTypeMessage")
-
-				if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage("hello, iam good")).Do(); err != nil {
+				if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage(fmt.Sprint("hello, iam good ", event.Message))).Do(); err != nil {
 					log.Print(err)
 				}
 
@@ -84,7 +83,7 @@ func main() {
 					}
 
 					// Sticker
-					if _, err := bot.PushMessage(event.Source.UserID, linebot.NewStickerMessage("106", "1")).Do(); err != nil {
+					if _, err := bot.PushMessage(event.Source.UserID, linebot.NewStickerMessage("1", "106")).Do(); err != nil {
 						log.Print(err)
 					}
 
