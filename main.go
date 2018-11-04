@@ -43,7 +43,7 @@ func main() {
 
 	// event all
 	cin.POST("/callback", func(c *gin.Context) {
-		fmt.Println("Work start POST")
+		fmt.Println("Work start callback")
 		events, err := bot.ParseRequest(c.Request)
 
 		fmt.Println("Work 1.1")
@@ -54,10 +54,10 @@ func main() {
 		for _, event := range events {
 			fmt.Println("Work 1.2")
 
-			fmt.Println(event.Source.UserID)
-			fmt.Println(event.Source.GroupID)
-			fmt.Println(event.Source.RoomID)
-			fmt.Println(event.ReplyToken)
+			// fmt.Println(event.Source.UserID)
+			// fmt.Println(event.Source.GroupID)
+			// fmt.Println(event.Source.RoomID)
+			// fmt.Println(event.ReplyToken)
 
 			if event.Type == linebot.EventTypeMessage {
 				fmt.Println("Work EventTypeMessage")
@@ -73,38 +73,61 @@ func main() {
 				if Testdata, err := bot.GetProfile(event.Source.UserID).Do(); err != nil {
 					log.Print(err)
 				} else {
-					fmt.Println("UserID -> ", Testdata.UserID)
-					fmt.Println("DisplayName -> ", Testdata.DisplayName)
-					fmt.Println("PictureURL -> ", Testdata.PictureURL)
-					fmt.Println("StatusMessage -> ", Testdata.StatusMessage)
+					// fmt.Println("UserID -> ", Testdata.UserID)
+					// fmt.Println("DisplayName -> ", Testdata.DisplayName)
+					// fmt.Println("PictureURL -> ", Testdata.PictureURL)
+					// fmt.Println("StatusMessage -> ", Testdata.StatusMessage)
+					// Message
 					var message = fmt.Sprint("Selamat Datang ", Testdata.DisplayName, "  ")
-
 					if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage(message)).Do(); err != nil {
 						log.Print(err)
 					}
 
-					if _, err := bot.PushMessage(event.Source.UserID, linebot.NewStickerMessage("1", "1")).Do(); err != nil {
+					// Sticker
+					if _, err := bot.PushMessage(event.Source.UserID, linebot.NewStickerMessage("106", "1")).Do(); err != nil {
+						log.Print(err)
+					}
+
+					// Button Template
+					leftBtn := linebot.NewMessageAction("Start Bot", "Start Bot")
+					rightBtn := linebot.NewMessageAction("Information", "Information")
+					template := linebot.NewConfirmTemplate("Hi..", leftBtn, rightBtn)
+					if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTemplateMessage("Bot call you..", template)).Do(); err != nil {
 						log.Print(err)
 					}
 
 				}
 			}
-			if event.Type == linebot.EventTypeUnfollow {
-				fmt.Println("Work EventTypeUnfollow")
+			// if event.Type == linebot.EventTypeUnfollow {
+			// 	fmt.Println("Work EventTypeUnfollow")
 
-			}
-			if event.Type == linebot.EventTypeJoin {
-				fmt.Println("Work EventTypeJoin")
+			// }
+			// if event.Type == linebot.EventTypeJoin {
+			// 	fmt.Println("Work EventTypeJoin")
 
-			}
-			if event.Type == linebot.EventTypeLeave {
-				fmt.Println("Work EventTypeLeave")
+			// }
+			// if event.Type == linebot.EventTypeLeave {
+			// 	fmt.Println("Work EventTypeLeave")
 
-			}
-			if event.Type == linebot.EventTypeBeacon {
-				fmt.Println("Work EventTypeBeacon")
+			// }
+			// if event.Type == linebot.EventTypeBeacon {
+			// 	fmt.Println("Work EventTypeBeacon")
 
-			}
+			// }
+		}
+	})
+
+	cin.GET("/menu", func(c *gin.Context) {
+		// var iduser = c.Param("iduser")
+		// fmt.Println("Work start menu")
+
+		leftBtn := linebot.NewMessageAction("Start Bot", "Start Bot")
+		rightBtn := linebot.NewMessageAction("Information", "Information")
+		template := linebot.NewConfirmTemplate("Hello World", leftBtn, rightBtn)
+		// message := linebot.NewTemplateMessage("Sorry :(, please update your app.", template)
+
+		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTemplateMessage("Hellow ", template)).Do(); err != nil {
+			log.Print(err)
 		}
 	})
 
