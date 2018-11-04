@@ -16,7 +16,6 @@ var cin *gin.Engine
 func main() {
 	// init bot
 	var channeltoken = `LZANYzm90f3h6eUyUl4PNce0sTjKQeojp7/E+F3NAyBW/ltsD3UCqsZdTxcyiEk+76+IXhfmzPKjoP16JDCMnzVI/EI5nQarf3h5ngNBDctTepFQAhtP/25yj5EV72OkNtIFPYxzgQPLwssXgQ8gpgdB04t89/1O/w1cDnyilFU=`
-	// var replyToken = `24ee6cbebfd41457136563b41f8184d6`
 
 	client := &http.Client{}
 	bot, err := linebot.New("24ee6cbebfd41457136563b41f8184d6", channeltoken, linebot.WithHTTPClient(client))
@@ -206,8 +205,24 @@ func main() {
 	cin.GET("/flex2", func(c *gin.Context) {
 		fmt.Println("Work start flex2")
 
-		contentsBubble := &linebot.BubbleContainer{
+		contentsBubbleButton := &linebot.BubbleContainer{
 			Type: linebot.FlexContainerTypeBubble,
+			Header: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Tittle,",
+					},
+				},
+			},
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
 			Body: &linebot.BoxComponent{
 				Type:   linebot.FlexComponentTypeBox,
 				Layout: linebot.FlexBoxLayoutTypeHorizontal,
@@ -222,15 +237,221 @@ func main() {
 					},
 				},
 			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Footer,",
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
 		}
 
-		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("Flex message Bubble", contentsBubble)).Do(); err != nil {
+		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("Flex message Bubble", contentsBubbleButton)).Do(); err != nil {
 			log.Print(err)
 		}
+
+	})
+
+	cin.GET("/flex3", func(c *gin.Context) {
+		fmt.Println("Work start flex3")
+
+		contentsBubbleButton := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Header: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Tittle,",
+					},
+				},
+			},
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Hello,",
+					},
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "World!",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeVertical,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Ok", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Cancel", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("Flex message Bubble", contentsBubbleButton)).Do(); err != nil {
+			log.Print(err)
+		}
+
+	})
+
+	cin.GET("/flex4", func(c *gin.Context) {
+		fmt.Println("Work start flex4")
+
+		contentsBubbleButton1 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Header: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Tittle,",
+					},
+				},
+			},
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Hello,",
+					},
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "World!",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeVertical,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Ok", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Cancel", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsBubbleButton2 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Header: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Tittle,",
+					},
+				},
+			},
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Hello,",
+					},
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "World!",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeVertical,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Ok", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Cancel", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsCarousel := &linebot.CarouselContainer{
+			Type: linebot.FlexContainerTypeCarousel,
+			Contents: []*linebot.BubbleContainer{
+				contentsBubbleButton1,
+				contentsBubbleButton2,
+			},
+		}
+
+		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("Flex message Bubble", contentsCarousel)).Do(); err != nil {
+			log.Print(err)
+		}
+
 	})
 
 	cin.GET("/profileapi", func(c *gin.Context) {
 		fmt.Println("Work start profileapi")
+
+		// type data
+		// type UserProfileResponse struct {
+		// 	UserID        string `json:"userId"`
+		// 	DisplayName   string `json:"displayName"`
+		// 	PictureURL    string `json:"pictureUrl"`
+		// 	StatusMessage string `json:"statusMessage"`
+		// }
+
+		if Testdata, err := bot.GetProfile("U77e1544ac9ae112f2bde7542bd61df65").Do(); err != nil {
+			log.Print(err)
+		} else {
+			fmt.Println("UserID -> ", Testdata.UserID)
+			fmt.Println("DisplayName -> ", Testdata.DisplayName)
+			fmt.Println("PictureURL -> ", Testdata.PictureURL)
+			fmt.Println("StatusMessage -> ", Testdata.StatusMessage)
+			var data = fmt.Sprint(Testdata.UserID, "  ", Testdata.DisplayName, "  ", Testdata.PictureURL)
+			if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTextMessage(data)).Do(); err != nil {
+				log.Print(err)
+			}
+		}
 
 	})
 
@@ -244,7 +465,7 @@ func main() {
 
 	})
 
-	cin.GET("/button", func(c *gin.Context) {
+	cin.GET("/menu", func(c *gin.Context) {
 		// fmt.Println("Work start button")
 
 		// templateLabel := "Go"
