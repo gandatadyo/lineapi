@@ -61,9 +61,18 @@ func main() {
 
 			if event.Type == linebot.EventTypeMessage {
 				fmt.Println("Work EventTypeMessage")
-				if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage(fmt.Sprint("hello, iam good ", event.Message))).Do(); err != nil {
-					log.Print(err)
+
+				switch message := event.Message.(type) {
+				case *linebot.TextMessage:
+					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+" OK!")).Do(); err != nil {
+						log.Print(err)
+					}
 				}
+
+				// data := event.Message.(type)
+				// if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage(fmt.Sprint("hello, iam good ", dataMessage.Text))).Do(); err != nil {
+				// 	log.Print(err)
+				// }
 
 			}
 			if event.Type == linebot.EventTypeFollow {
