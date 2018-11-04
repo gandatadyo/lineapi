@@ -74,7 +74,7 @@ func main() {
 					case "Produk Tas":
 						{
 							c.Redirect(http.StatusMovedPermanently, fmt.Sprint(urlAddress, "/tas/", event.Source.UserID))
-							fmt.Println(fmt.Sprint("Produk Tas --> ", urlAddress, "/tas/event.Source.UserID"))
+							fmt.Println(fmt.Sprint("Produk Tas --> ", urlAddress, "/tas/", event.Source.UserID))
 						}
 					case "Produk Sepatu":
 						{
@@ -152,7 +152,7 @@ func main() {
 			Type: linebot.FlexContainerTypeBubble,
 			Hero: &linebot.ImageComponent{
 				Type:   linebot.FlexComponentTypeImage,
-				URL:    "http://cdn.elevenia.co.id/g/6/6/3/5/4/9/3663549_B_V3.jpg",
+				URL:    "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/medium//92/MTA-2070809/webe_webe-tote-bag-ivy-ribbon-red_full03.jpg",
 				Size:   linebot.FlexImageSizeTypeFull,
 				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
 			},
@@ -186,7 +186,7 @@ func main() {
 			Type: linebot.FlexContainerTypeBubble,
 			Hero: &linebot.ImageComponent{
 				Type:   linebot.FlexComponentTypeImage,
-				URL:    "https://ecs7.tokopedia.net/img/cache/700/product-1/2015/1/18/246727/246727_88af51e0-9ec5-11e4-9067-e2ba4908a8c2.jpg",
+				URL:    "https://www.indonesiaharga.biz.id/details/1050/images/82/MTA-1602234/catenzo_catenzo-kh-014-mareuli-dan-marema-tas-perempuan---blue_full02.jpg",
 				Size:   linebot.FlexImageSizeTypeFull,
 				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
 			},
@@ -220,7 +220,7 @@ func main() {
 			Type: linebot.FlexContainerTypeBubble,
 			Hero: &linebot.ImageComponent{
 				Type:   linebot.FlexComponentTypeImage,
-				URL:    "https://koleksitasbogor.files.wordpress.com/2014/01/katalog-tas-michelia-produk-wanita-produsen-tas-bogor-suplier-tas-wanita-reseller-tas-online-branded-viyar-tas-selempang-michelia-tas-kuliah-tas-murmer-tas-lokal-bagus-tas-cewek-harga-ta.jpg",
+				URL:    "https://dynamic.zacdn.com/-C4Br6Rh3qjREbBw5pFBImqItXU=/fit-in/472x690/filters:quality(90):fill(ffffff)/http://static.id.zalora.net/p/elizabeth-bags-0764-8220171-2.jpg",
 				Size:   linebot.FlexImageSizeTypeFull,
 				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
 			},
@@ -230,7 +230,7 @@ func main() {
 				Contents: []linebot.FlexComponent{
 					&linebot.TextComponent{
 						Type: linebot.FlexComponentTypeText,
-						Text: "Tas Ping Crown / Rp. 450.000,",
+						Text: "Tas Ping Crown / Rp. 428.000,",
 					},
 				},
 			},
@@ -254,7 +254,7 @@ func main() {
 			Type: linebot.FlexContainerTypeBubble,
 			Hero: &linebot.ImageComponent{
 				Type:   linebot.FlexComponentTypeImage,
-				URL:    "http://www.serbagrosir.com/wp-content/uploads/2014/05/tas-selempang-G-4240.jpg",
+				URL:    "https://www.penjualan.co/details/700/images/103/MTA-1726888/lansdeal_4pcs-women-pattern-leather-shoulder-bag-crossbody-bag-handbag-wallet-gray-_full04.jpg",
 				Size:   linebot.FlexImageSizeTypeFull,
 				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
 			},
@@ -288,13 +288,321 @@ func main() {
 			Type: linebot.FlexContainerTypeCarousel,
 			Contents: []*linebot.BubbleContainer{
 				contentsBubbleTas1,
-				contentsBubbleTas2,
 				contentsBubbleTas3,
 				contentsBubbleTas4,
+				contentsBubbleTas2,
 			},
 		}
 
 		if _, err := bot.PushMessage(iduser, linebot.NewFlexMessage("Produk Tas", contentsCarousel)).Do(); err != nil {
+			log.Print(err)
+		}
+	})
+
+	cin.GET("/sepatu/:iduser", func(c *gin.Context) {
+		fmt.Println("Work start show produk sepatu")
+		var iduser = c.Param("iduser")
+
+		contentsBubbleSepatu1 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "http://cdn.elevenia.co.id/g/6/6/3/5/4/9/3663549_B_V3.jpg",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Sepatu Red Velvet / Rp. 350.000,",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsBubbleSepatu2 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "https://ecs7.tokopedia.net/img/cache/700/product-1/2015/1/18/246727/246727_88af51e0-9ec5-11e4-9067-e2ba4908a8c2.jpg",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Sepatu Blue Jeans / Rp. 378.000,",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		// contentsBubbleSepatu3 := &linebot.BubbleContainer{
+		// 	Type: linebot.FlexContainerTypeBubble,
+		// 	Hero: &linebot.ImageComponent{
+		// 		Type:   linebot.FlexComponentTypeImage,
+		// 		URL:    "https://koleksiSepatubogor.files.wordpress.com/2014/01/katalog-Sepatu-michelia-produk-wanita-produsen-Sepatu-bogor-suplier-Sepatu-wanita-reseller-Sepatu-online-branded-viyar-Sepatu-selempang-michelia-Sepatu-kuliah-Sepatu-murmer-Sepatu-lokal-bagus-Sepatu-cewek-harga-ta.jpg",
+		// 		Size:   linebot.FlexImageSizeTypeFull,
+		// 		Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+		// 	},
+		// 	Body: &linebot.BoxComponent{
+		// 		Type:   linebot.FlexComponentTypeBox,
+		// 		Layout: linebot.FlexBoxLayoutTypeHorizontal,
+		// 		Contents: []linebot.FlexComponent{
+		// 			&linebot.TextComponent{
+		// 				Type: linebot.FlexComponentTypeText,
+		// 				Text: "Sepatu Ping Crown / Rp. 450.000,",
+		// 			},
+		// 		},
+		// 	},
+		// 	Footer: &linebot.BoxComponent{
+		// 		Type:   linebot.FlexComponentTypeBox,
+		// 		Layout: linebot.FlexBoxLayoutTypeHorizontal,
+		// 		Contents: []linebot.FlexComponent{
+		// 			&linebot.ButtonComponent{
+		// 				Type:   linebot.FlexComponentTypeButton,
+		// 				Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+		// 			},
+		// 			&linebot.ButtonComponent{
+		// 				Type:   linebot.FlexComponentTypeButton,
+		// 				Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+		// 			},
+		// 		},
+		// 	},
+		// }
+
+		// contentsBubbleSepatu4 := &linebot.BubbleContainer{
+		// 	Type: linebot.FlexContainerTypeBubble,
+		// 	Hero: &linebot.ImageComponent{
+		// 		Type:   linebot.FlexComponentTypeImage,
+		// 		URL:    "http://www.serbagrosir.com/wp-content/uploads/2014/05/Sepatu-selempang-G-4240.jpg",
+		// 		Size:   linebot.FlexImageSizeTypeFull,
+		// 		Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+		// 	},
+		// 	Body: &linebot.BoxComponent{
+		// 		Type:   linebot.FlexComponentTypeBox,
+		// 		Layout: linebot.FlexBoxLayoutTypeHorizontal,
+		// 		Contents: []linebot.FlexComponent{
+		// 			&linebot.TextComponent{
+		// 				Type: linebot.FlexComponentTypeText,
+		// 				Text: "Sepatu Casual Gray / Rp. 330.000,",
+		// 			},
+		// 		},
+		// 	},
+		// 	Footer: &linebot.BoxComponent{
+		// 		Type:   linebot.FlexComponentTypeBox,
+		// 		Layout: linebot.FlexBoxLayoutTypeHorizontal,
+		// 		Contents: []linebot.FlexComponent{
+		// 			&linebot.ButtonComponent{
+		// 				Type:   linebot.FlexComponentTypeButton,
+		// 				Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+		// 			},
+		// 			&linebot.ButtonComponent{
+		// 				Type:   linebot.FlexComponentTypeButton,
+		// 				Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+		// 			},
+		// 		},
+		// 	},
+		// }
+
+		contentsCarousel := &linebot.CarouselContainer{
+			Type: linebot.FlexContainerTypeCarousel,
+			Contents: []*linebot.BubbleContainer{
+				contentsBubbleSepatu1,
+				contentsBubbleSepatu2,
+			},
+		}
+
+		if _, err := bot.PushMessage(iduser, linebot.NewFlexMessage("Produk Sepatu", contentsCarousel)).Do(); err != nil {
+			log.Print(err)
+		}
+	})
+
+	cin.GET("/bajukaos/:iduser", func(c *gin.Context) {
+		fmt.Println("Work start show produk tas")
+		var iduser = c.Param("iduser")
+
+		contentsBubblebajukaos1 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "http://cdn.elevenia.co.id/g/6/6/3/5/4/9/3663549_B_V3.jpg",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "bajukaos Red Velvet / Rp. 350.000,",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsBubblebajukaos2 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "https://ecs7.tokopedia.net/img/cache/700/product-1/2015/1/18/246727/246727_88af51e0-9ec5-11e4-9067-e2ba4908a8c2.jpg",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "bajukaos Blue Jeans / Rp. 378.000,",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsBubblebajukaos3 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "https://koleksibajukaosbogor.files.wordpress.com/2014/01/katalog-tas-michelia-produk-wanita-produsen-tas-bogor-suplier-tas-wanita-reseller-tas-online-branded-viyar-tas-selempang-michelia-tas-kuliah-tas-murmer-tas-lokal-bagus-tas-cewek-harga-ta.jpg",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Tas Ping Crown / Rp. 450.000,",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsBubblebajukaos4 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "http://www.serbagrosir.com/wp-content/uploads/2014/05/bajukaos-selempang-G-4240.jpg",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "bajukaos Casual Gray / Rp. 330.000,",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsCarousel := &linebot.CarouselContainer{
+			Type: linebot.FlexContainerTypeCarousel,
+			Contents: []*linebot.BubbleContainer{
+				contentsBubblebajukaos1,
+				contentsBubblebajukaos2,
+				contentsBubblebajukaos3,
+				contentsBubblebajukaos4,
+			},
+		}
+
+		if _, err := bot.PushMessage(iduser, linebot.NewFlexMessage("Produk bajukaos", contentsCarousel)).Do(); err != nil {
 			log.Print(err)
 		}
 	})
