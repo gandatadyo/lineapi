@@ -16,6 +16,7 @@ var cin *gin.Engine
 func main() {
 	// init bot
 	var channeltoken = `LZANYzm90f3h6eUyUl4PNce0sTjKQeojp7/E+F3NAyBW/ltsD3UCqsZdTxcyiEk+76+IXhfmzPKjoP16JDCMnzVI/EI5nQarf3h5ngNBDctTepFQAhtP/25yj5EV72OkNtIFPYxzgQPLwssXgQ8gpgdB04t89/1O/w1cDnyilFU=`
+	var urlAddress = "https://dark-asylum-97180.herokuapp.com"
 
 	client := &http.Client{}
 	bot, err := linebot.New("24ee6cbebfd41457136563b41f8184d6", channeltoken, linebot.WithHTTPClient(client))
@@ -64,16 +65,34 @@ func main() {
 
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
-					if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+" OK!")).Do(); err != nil {
-						log.Print(err)
+
+					// if _, err = bot.ReplyMessage(event.ReplyToken, linebot.NewTextMessage(message.ID+":"+message.Text+" OK!")).Do(); err != nil {
+					// 	log.Print(err)
+					// }
+
+					switch datamessage := message.Text; datamessage {
+					case "Produk Tas":
+						{
+							c.Redirect(http.StatusMovedPermanently, fmt.Sprint(urlAddress, "/tas/event.Source.UserID"))
+							fmt.Println("Produk Tas")
+						}
+					case "Produk Sepatu":
+						{
+							fmt.Println("Linux.")
+						}
+					case "Produk Baju dan Kaos":
+						{
+							fmt.Println("Linux.")
+						}
+					case "Information":
+						{
+							fmt.Println("Linux.")
+						}
+					default:
+						fmt.Println("Tidak ada perintah")
 					}
+
 				}
-
-				// data := event.Message.(type)
-				// if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage(fmt.Sprint("hello, iam good ", dataMessage.Text))).Do(); err != nil {
-				// 	log.Print(err)
-				// }
-
 			}
 			if event.Type == linebot.EventTypeFollow {
 				fmt.Println("Work EventTypeFollow")
@@ -122,6 +141,161 @@ func main() {
 			// 	fmt.Println("Work EventTypeBeacon")
 
 			// }
+		}
+	})
+
+	cin.GET("/tas/:iduser", func(c *gin.Context) {
+		fmt.Println("Work start show produk tas")
+		var iduser = c.Param("iduser")
+
+		contentsBubbleTas1 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "http://cdn.elevenia.co.id/g/6/6/3/5/4/9/3663549_B_V3.jpg",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Tas Red Velvet / Rp. 350.000,",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsBubbleTas2 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "https://ecs7.tokopedia.net/img/cache/700/product-1/2015/1/18/246727/246727_88af51e0-9ec5-11e4-9067-e2ba4908a8c2.jpg",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Tas Blue Jeans / Rp. 378.000,",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsBubbleTas3 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "https://koleksitasbogor.files.wordpress.com/2014/01/katalog-tas-michelia-produk-wanita-produsen-tas-bogor-suplier-tas-wanita-reseller-tas-online-branded-viyar-tas-selempang-michelia-tas-kuliah-tas-murmer-tas-lokal-bagus-tas-cewek-harga-ta.jpg",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Tas Ping Crown / Rp. 450.000,",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsBubbleTas4 := &linebot.BubbleContainer{
+			Type: linebot.FlexContainerTypeBubble,
+			Hero: &linebot.ImageComponent{
+				Type:   linebot.FlexComponentTypeImage,
+				URL:    "http://www.serbagrosir.com/wp-content/uploads/2014/05/tas-selempang-G-4240.jpg",
+				Size:   linebot.FlexImageSizeTypeFull,
+				Action: &linebot.URIAction{"Label", "https://dark-asylum-97180.herokuapp.com/flex1"},
+			},
+			Body: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.TextComponent{
+						Type: linebot.FlexComponentTypeText,
+						Text: "Tas Casual Gray / Rp. 330.000,",
+					},
+				},
+			},
+			Footer: &linebot.BoxComponent{
+				Type:   linebot.FlexComponentTypeBox,
+				Layout: linebot.FlexBoxLayoutTypeHorizontal,
+				Contents: []linebot.FlexComponent{
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+					&linebot.ButtonComponent{
+						Type:   linebot.FlexComponentTypeButton,
+						Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					},
+				},
+			},
+		}
+
+		contentsCarousel := &linebot.CarouselContainer{
+			Type: linebot.FlexContainerTypeCarousel,
+			Contents: []*linebot.BubbleContainer{
+				contentsBubbleTas1,
+				contentsBubbleTas2,
+				contentsBubbleTas3,
+				contentsBubbleTas4,
+			},
+		}
+
+		if _, err := bot.PushMessage(iduser, linebot.NewFlexMessage("Produk Tas", contentsCarousel)).Do(); err != nil {
+			log.Print(err)
 		}
 	})
 
