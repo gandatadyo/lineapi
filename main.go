@@ -69,6 +69,11 @@ func main() {
 			if event.Type == linebot.EventTypeFollow {
 				fmt.Println("Work EventTypeFollow")
 
+				fmt.Println("Work EventTypeMessage")
+				if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage("hello, Selamat Data")).Do(); err != nil {
+					log.Print(err)
+				}
+
 			}
 			if event.Type == linebot.EventTypeUnfollow {
 				fmt.Println("Work EventTypeUnfollow")
