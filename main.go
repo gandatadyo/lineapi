@@ -61,6 +61,7 @@ func main() {
 
 			if event.Type == linebot.EventTypeMessage {
 				fmt.Println("Work EventTypeMessage")
+
 				if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage("hello, iam good")).Do(); err != nil {
 					log.Print(err)
 				}
@@ -77,9 +78,15 @@ func main() {
 					fmt.Println("PictureURL -> ", Testdata.PictureURL)
 					fmt.Println("StatusMessage -> ", Testdata.StatusMessage)
 					var message = fmt.Sprint("Selamat Datang ", Testdata.DisplayName, "  ")
-					if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTextMessage(message)).Do(); err != nil {
+
+					if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage(message)).Do(); err != nil {
 						log.Print(err)
 					}
+
+					if _, err := bot.PushMessage(event.Source.UserID, linebot.NewStickerMessage("1", "1")).Do(); err != nil {
+						log.Print(err)
+					}
+
 				}
 			}
 			if event.Type == linebot.EventTypeUnfollow {
@@ -99,58 +106,6 @@ func main() {
 
 			}
 		}
-
-		// var valheader = c.Request.Header.Get("valheader")
-		// buf := make([]byte, 1024)
-		// num, _ := c.Request.Body.Read(buf)
-		// valbody := string(buf[0:num])
-		// c.HTML(http.StatusOK, "home.html", gin.H{"valheader": valheader, "valbody": string(valbody)})
-	})
-	cin.GET("/callback", func(c *gin.Context) {
-		fmt.Println("Work start GET")
-		events, err := bot.ParseRequest(c.Request)
-		fmt.Println("Work 1.1")
-		if err != nil {
-			fmt.Println("Error 1.1")
-			log.Print(err)
-		}
-		for _, event := range events {
-			fmt.Println("Work 1.2")
-
-			fmt.Println(event.Source.UserID)
-			fmt.Println(event.Source.GroupID)
-			fmt.Println(event.Source.RoomID)
-			fmt.Println(event.ReplyToken)
-
-			if event.Type == linebot.EventTypeMessage {
-				fmt.Println("Work EventTypeMessage")
-
-			}
-			if event.Type == linebot.EventTypeFollow {
-				fmt.Println("Work EventTypeFollow")
-
-			}
-			if event.Type == linebot.EventTypeUnfollow {
-				fmt.Println("Work EventTypeUnfollow")
-
-			}
-			if event.Type == linebot.EventTypeJoin {
-				fmt.Println("Work EventTypeJoin")
-
-			}
-			if event.Type == linebot.EventTypeLeave {
-				fmt.Println("Work EventTypeLeave")
-
-			}
-			if event.Type == linebot.EventTypeBeacon {
-				fmt.Println("Work EventTypeBeacon")
-
-			}
-		}
-
-		// var valheader = c.Request.Header.Get("valheader")
-		// // c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
-		// c.HTML(http.StatusOK, "home.html", gin.H{"valheader": valheader, "valbody": " THIS IS METHOD GET"})
 	})
 
 	cin.GET("/pushmessage", func(c *gin.Context) {
@@ -475,24 +430,6 @@ func main() {
 	cin.GET("/grouproom", func(c *gin.Context) {
 		fmt.Println("Work start getmemberroom")
 
-	})
-
-	cin.GET("/menu", func(c *gin.Context) {
-		// fmt.Println("Work start button")
-
-		// templateLabel := "Go"
-		// templateText := "Hello, Golang!"
-		// thumbnailImageURL := "https://dl.dropboxusercontent.com/u/358152/linebot/resource/gopher.png"
-		// actionLabel := "Go to golang.org"
-		// actionURI := "https://golang.org"
-		// template := linebot.NewButtonsTemplate(
-		// 	thumbnailImageURL, templateLabel, templateText,
-		// )
-		// altText := "Go template"
-
-		// if _, err := bot.ReplyMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTemplateMessage(altText, contentsBubble)).Do(); err != nil {
-		// 	log.Print(err)
-		// }
 	})
 
 	cin.Run(":" + port)
