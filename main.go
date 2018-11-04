@@ -74,7 +74,7 @@ func main() {
 					case "Produk Tas":
 						{
 							c.Redirect(http.StatusMovedPermanently, fmt.Sprint(urlAddress, "/tas/event.Source.UserID"))
-							fmt.Println("Produk Tas")
+							fmt.Println(fmt.Sprint("Produk Tas --> ", urlAddress, "/tas/event.Source.UserID"))
 						}
 					case "Produk Sepatu":
 						{
