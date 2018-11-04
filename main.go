@@ -73,7 +73,7 @@ func main() {
 					switch datamessage := message.Text; datamessage {
 					case "Produk Tas":
 						{
-							c.Redirect(http.StatusMovedPermanently, fmt.Sprint(urlAddress, "/tas/event.Source.UserID"))
+							c.Redirect(http.StatusMovedPermanently, fmt.Sprint(urlAddress, "/tas/", event.Source.UserID))
 							fmt.Println(fmt.Sprint("Produk Tas --> ", urlAddress, "/tas/event.Source.UserID"))
 						}
 					case "Produk Sepatu":
