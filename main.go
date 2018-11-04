@@ -77,7 +77,7 @@ func main() {
 					fmt.Println("PictureURL -> ", Testdata.PictureURL)
 					fmt.Println("StatusMessage -> ", Testdata.StatusMessage)
 					var message = fmt.Sprint("Selamat Datang ", Testdata.DisplayName, "  ")
-					if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTextMessage(data)).Do(); err != nil {
+					if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTextMessage(message)).Do(); err != nil {
 						log.Print(err)
 					}
 				}
