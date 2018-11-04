@@ -69,11 +69,18 @@ func main() {
 			if event.Type == linebot.EventTypeFollow {
 				fmt.Println("Work EventTypeFollow")
 
-				fmt.Println("Work EventTypeMessage")
-				if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage("hello, Selamat Data")).Do(); err != nil {
+				if Testdata, err := bot.GetProfile(event.Source.UserID).Do(); err != nil {
 					log.Print(err)
+				} else {
+					fmt.Println("UserID -> ", Testdata.UserID)
+					fmt.Println("DisplayName -> ", Testdata.DisplayName)
+					fmt.Println("PictureURL -> ", Testdata.PictureURL)
+					fmt.Println("StatusMessage -> ", Testdata.StatusMessage)
+					var message = fmt.Sprint("Selamat Datang ", Testdata.DisplayName, "  ")
+					if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewTextMessage(data)).Do(); err != nil {
+						log.Print(err)
+					}
 				}
-
 			}
 			if event.Type == linebot.EventTypeUnfollow {
 				fmt.Println("Work EventTypeUnfollow")
