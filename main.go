@@ -294,6 +294,7 @@ func main() {
 			},
 		}
 
+		fmt.Println("Send Push Produk Tas")
 		if _, err := bot.PushMessage(iduser, linebot.NewFlexMessage("Produk Tas", contentsCarousel)).Do(); err != nil {
 			log.Print(err)
 		}
