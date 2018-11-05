@@ -432,8 +432,18 @@ func main() {
 								log.Print(err)
 							}
 						}
+					case "Start":
+						{
+							if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage("Untuk menggunakan fitur chatbot ini, anda bisa menggunakan tombol menu")).Do(); err != nil {
+								log.Print(err)
+							}
+						}
 					default:
-						fmt.Println("Tidak ada perintah")
+						{
+							if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage("Perintah tidak di ketahui, Mohon gunakan tombol menu untuk menggunakan perintah")).Do(); err != nil {
+								log.Print(err)
+							}
+						}
 					}
 
 				}
@@ -460,7 +470,7 @@ func main() {
 					}
 
 					// Button Template
-					leftBtn := linebot.NewMessageAction("Start Bot", "Start Bot")
+					leftBtn := linebot.NewMessageAction("Start Bot", "Start")
 					rightBtn := linebot.NewMessageAction("Information", "Information")
 					template := linebot.NewConfirmTemplate("Hi..", leftBtn, rightBtn)
 					if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTemplateMessage("Bot call you..", template)).Do(); err != nil {
@@ -560,162 +570,6 @@ func main() {
 		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("Flex message Carousel", contentsCarousel)).Do(); err != nil {
 			log.Print(err)
 		}
-
-	})
-
-	cin.GET("/flex2", func(c *gin.Context) {
-		fmt.Println("Work start flex2")
-
-		contentsBubbleTas1 := &linebot.BubbleContainer{
-			Type: linebot.FlexContainerTypeBubble,
-			Hero: &linebot.ImageComponent{
-				Type:   linebot.FlexComponentTypeImage,
-				URL:    "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/medium//92/MTA-2070809/webe_webe-tote-bag-ivy-ribbon-red_full03.jpg",
-				Size:   linebot.FlexImageSizeTypeFull,
-				Action: &linebot.URIAction{"Label", "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/medium//92/MTA-2070809/webe_webe-tote-bag-ivy-ribbon-red_full03.jpg"},
-			},
-			Body: &linebot.BoxComponent{
-				Type:   linebot.FlexComponentTypeBox,
-				Layout: linebot.FlexBoxLayoutTypeHorizontal,
-				Contents: []linebot.FlexComponent{
-					&linebot.TextComponent{
-						Type: linebot.FlexComponentTypeText,
-						Text: "Tas Red Velvet / Rp. 350.000,",
-					},
-				},
-			},
-			Footer: &linebot.BoxComponent{
-				Type:   linebot.FlexComponentTypeBox,
-				Layout: linebot.FlexBoxLayoutTypeHorizontal,
-				Contents: []linebot.FlexComponent{
-					&linebot.ButtonComponent{
-						Type:   linebot.FlexComponentTypeButton,
-						Action: &linebot.MessageAction{"Beli", "Mengirim Data Pembelian Transaksi"},
-					},
-					&linebot.ButtonComponent{
-						Type:   linebot.FlexComponentTypeButton,
-						Action: &linebot.MessageAction{"Stock", "Meminta Data Stock"},
-					},
-				},
-			},
-		}
-
-		// contentsBubbleTas2 := &linebot.BubbleContainer{
-		// 	Type: linebot.FlexContainerTypeBubble,
-		// 	Hero: &linebot.ImageComponent{
-		// 		Type:   linebot.FlexComponentTypeImage,
-		// 		URL:    "https://www.indonesiaharga.biz.id/details/1050/images/82/MTA-1602234/catenzo_catenzo-kh-014-mareuli-dan-marema-tas-perempuan---blue_full02.jpg",
-		// 		Size:   linebot.FlexImageSizeTypeFull,
-		// 		Action: &linebot.URIAction{"Label", "https://www.indonesiaharga.biz.id/details/1050/images/82/MTA-1602234/catenzo_catenzo-kh-014-mareuli-dan-marema-tas-perempuan---blue_full02.jpg"},
-		// 	},
-		// 	Body: &linebot.BoxComponent{
-		// 		Type:   linebot.FlexComponentTypeBox,
-		// 		Layout: linebot.FlexBoxLayoutTypeHorizontal,
-		// 		Contents: []linebot.FlexComponent{
-		// 			&linebot.TextComponent{
-		// 				Type: linebot.FlexComponentTypeText,
-		// 				Text: "Tas Blue Jeans / Rp. 378.000,",
-		// 			},
-		// 		},
-		// 	},
-		// 	Footer: &linebot.BoxComponent{
-		// 		Type:   linebot.FlexComponentTypeBox,
-		// 		Layout: linebot.FlexBoxLayoutTypeHorizontal,
-		// 		Contents: []linebot.FlexComponent{
-		// 			&linebot.ButtonComponent{
-		// 				Type:   linebot.FlexComponentTypeButton,
-		// 				Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
-		// 			},
-		// 			&linebot.ButtonComponent{
-		// 				Type:   linebot.FlexComponentTypeButton,
-		// 				Action: &linebot.MessageAction{"Stock", "Data Stock 233"},
-		// 			},
-		// 		},
-		// 	},
-		// }
-
-		// contentsBubbleTas3 := &linebot.BubbleContainer{
-		// 	Type: linebot.FlexContainerTypeBubble,
-		// 	Hero: &linebot.ImageComponent{
-		// 		Type:   linebot.FlexComponentTypeImage,
-		// 		URL:    "https://dynamic.zacdn.com/-C4Br6Rh3qjREbBw5pFBImqItXU=/fit-in/472x690/filters:quality(90):fill(ffffff)/http://static.id.zalora.net/p/elizabeth-bags-0764-8220171-2.jpg",
-		// 		Size:   linebot.FlexImageSizeTypeFull,
-		// 		Action: &linebot.URIAction{"Label", "https://dynamic.zacdn.com/-C4Br6Rh3qjREbBw5pFBImqItXU=/fit-in/472x690/filters:quality(90):fill(ffffff)/http://static.id.zalora.net/p/elizabeth-bags-0764-8220171-2.jpg"},
-		// 	},
-		// 	Body: &linebot.BoxComponent{
-		// 		Type:   linebot.FlexComponentTypeBox,
-		// 		Layout: linebot.FlexBoxLayoutTypeHorizontal,
-		// 		Contents: []linebot.FlexComponent{
-		// 			&linebot.TextComponent{
-		// 				Type: linebot.FlexComponentTypeText,
-		// 				Text: "Tas Ping Crown / Rp. 428.000,",
-		// 			},
-		// 		},
-		// 	},
-		// 	Footer: &linebot.BoxComponent{
-		// 		Type:   linebot.FlexComponentTypeBox,
-		// 		Layout: linebot.FlexBoxLayoutTypeHorizontal,
-		// 		Contents: []linebot.FlexComponent{
-		// 			&linebot.ButtonComponent{
-		// 				Type:   linebot.FlexComponentTypeButton,
-		// 				Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
-		// 			},
-		// 			&linebot.ButtonComponent{
-		// 				Type:   linebot.FlexComponentTypeButton,
-		// 				Action: &linebot.MessageAction{"Stock", "Data Stock 111"},
-		// 			},
-		// 		},
-		// 	},
-		// }
-
-		// contentsBubbleTas4 := &linebot.BubbleContainer{
-		// 	Type: linebot.FlexContainerTypeBubble,
-		// 	Hero: &linebot.ImageComponent{
-		// 		Type:   linebot.FlexComponentTypeImage,
-		// 		URL:    "https://www.penjualan.co/details/700/images/103/MTA-1726888/lansdeal_4pcs-women-pattern-leather-shoulder-bag-crossbody-bag-handbag-wallet-gray-_full04.jpg",
-		// 		Size:   linebot.FlexImageSizeTypeFull,
-		// 		Action: &linebot.URIAction{"Label", "https://www.penjualan.co/details/700/images/103/MTA-1726888/lansdeal_4pcs-women-pattern-leather-shoulder-bag-crossbody-bag-handbag-wallet-gray-_full04.jpg"},
-		// 	},
-		// 	Body: &linebot.BoxComponent{
-		// 		Type:   linebot.FlexComponentTypeBox,
-		// 		Layout: linebot.FlexBoxLayoutTypeHorizontal,
-		// 		Contents: []linebot.FlexComponent{
-		// 			&linebot.TextComponent{
-		// 				Type: linebot.FlexComponentTypeText,
-		// 				Text: "Tas Casual Gray / Rp. 330.000,",
-		// 			},
-		// 		},
-		// 	},
-		// 	Footer: &linebot.BoxComponent{
-		// 		Type:   linebot.FlexComponentTypeBox,
-		// 		Layout: linebot.FlexBoxLayoutTypeHorizontal,
-		// 		Contents: []linebot.FlexComponent{
-		// 			&linebot.ButtonComponent{
-		// 				Type:   linebot.FlexComponentTypeButton,
-		// 				Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
-		// 			},
-		// 			&linebot.ButtonComponent{
-		// 				Type:   linebot.FlexComponentTypeButton,
-		// 				Action: &linebot.MessageAction{"Stock", "Data Stock 455"},
-		// 			},
-		// 		},
-		// 	},
-		// }
-
-		contentsCarouseTas := &linebot.CarouselContainer{
-			Type: linebot.FlexContainerTypeCarousel,
-			Contents: []*linebot.BubbleContainer{
-				contentsBubbleTas1,
-			},
-		}
-
-		if _, err := bot.PushMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("Flex message Carousel", contentsCarouseTas)).Do(); err != nil {
-			log.Print(err)
-		}
-
-		// if _, err := bot.ReplyMessage("U77e1544ac9ae112f2bde7542bd61df65", linebot.NewFlexMessage("Produk Tas", contentsCarouseTas)).Do(); err != nil {
-		// 	log.Print(err)
-		// }
 
 	})
 
