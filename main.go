@@ -43,11 +43,11 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
 				},
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
 				},
 			},
 		},
@@ -255,7 +255,7 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.TextComponent{
 					Type: linebot.FlexComponentTypeText,
-					Text: "bajukaos Red Velvet / Rp. 350.000,",
+					Text: "Black Izoo / Rp. 250.000,",
 				},
 			},
 		},
@@ -289,7 +289,7 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.TextComponent{
 					Type: linebot.FlexComponentTypeText,
-					Text: "bajukaos Blue Jeans / Rp. 378.000,",
+					Text: "Sth Tyle 40 / Rp. 275.000,",
 				},
 			},
 		},
@@ -323,7 +323,7 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.TextComponent{
 					Type: linebot.FlexComponentTypeText,
-					Text: "Tas Ping Crown / Rp. 450.000,",
+					Text: "420 VintBlack / Rp. 290.000,",
 				},
 			},
 		},
@@ -422,7 +422,9 @@ func main() {
 						}
 					case "Information":
 						{
-							fmt.Println("Linux.")
+							if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage("Example Bot Ecomerce")).Do(); err != nil {
+								log.Print(err)
+							}
 						}
 					default:
 						fmt.Println("Tidak ada perintah")
