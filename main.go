@@ -43,11 +43,11 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.MessageAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Beli", "Mengirim Data Pembelian Transaksi"},
 				},
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.MessageAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Stock", "Data Stock 155"},
 				},
 			},
 		},
@@ -77,11 +77,11 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
 				},
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Stock", "Data Stock 233"},
 				},
 			},
 		},
@@ -111,11 +111,11 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
 				},
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Stock", "Data Stock 111"},
 				},
 			},
 		},
@@ -145,11 +145,11 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
 				},
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Stock", "Data Stock 455"},
 				},
 			},
 		},
@@ -189,11 +189,11 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
 				},
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Stock", "Data Stock 233"},
 				},
 			},
 		},
@@ -223,11 +223,11 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
 				},
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Stock", "Data Stock 344"},
 				},
 			},
 		},
@@ -265,11 +265,11 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
 				},
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Stock", "Data Stock 500"},
 				},
 			},
 		},
@@ -299,11 +299,11 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
 				},
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Stock", "Data Stock 500"},
 				},
 			},
 		},
@@ -333,11 +333,11 @@ func main() {
 			Contents: []linebot.FlexComponent{
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Beli", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.URIAction{"Beli", "Mengirim Data Pembelian Transaksi"},
 				},
 				&linebot.ButtonComponent{
 					Type:   linebot.FlexComponentTypeButton,
-					Action: &linebot.URIAction{"Stock", "https://dark-asylum-97180.herokuapp.com/flex1"},
+					Action: &linebot.MessageAction{"Stock", "Data Stock 300"},
 				},
 			},
 		},
@@ -423,6 +423,12 @@ func main() {
 					case "Information":
 						{
 							if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage("Example Bot Ecomerce")).Do(); err != nil {
+								log.Print(err)
+							}
+						}
+					case "Mengirim Data Pembelian Transaksi":
+						{
+							if _, err := bot.PushMessage(event.Source.UserID, linebot.NewTextMessage("Pembelian sedang di proses, mohon tunggu ...")).Do(); err != nil {
 								log.Print(err)
 							}
 						}
